@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Usuários{% endblock %}
+
+{% block content %}
+<div class="mt-5">
+    <h2>Lista de Carros</h2>
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Descrição</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Cor</th>
+                <th scope="col">Ano</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for carro in carros %}
+            <tr>
+                <td>{{ carro.descricao }}</td>
+                <td>{{ carro.modelo }}</td>
+                <td>{{ carro.cor }}</td>
+                <td>{{ carro.ano }}</td>
+                <td>{{ carro.marca.nome }}</td>
+                <td>
+                    <a href="{% url 'editar_carro' carro.id %}"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'remover_carro' carro.id %}"><i class="fas fa-trash-alt"></i></a>
+                    <a href="#"><i class="fas fa-search"></i></a>
+                </td>
+            </tr>
+            <!-- Adicione mais linhas como essas para gerar mais dados -->
+        </tbody>
+        {% endfor %}
+    </table>
+
+    <div class="mb-3">
+        <a href="{% url 'cadastro_carro'%}" class="btn btn-primary">Adicionar Novo</a>
+    </div>
+</div>
+{% endblock %}
